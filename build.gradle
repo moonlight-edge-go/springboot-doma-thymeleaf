@@ -24,7 +24,6 @@ tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
 
 repositories {
     mavenCentral()
-    maven { url "http://svn/repos/maven/trunk/mavenrepos/" }
 }
 
 dependencies {
@@ -36,6 +35,8 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-configuration-processor'
 
+    // DOMparser
+    compile 'net.sourceforge.nekohtml:nekohtml:+'
     // Doma2
     compile 'org.seasar.doma.boot:doma-spring-boot-starter:1.1.0'
     // guava
@@ -45,7 +46,11 @@ dependencies {
     // logger
     compile 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
     
-    runtime 'com.oracle:ojdbc6:11.2.0.4.0'
+    
+    compile 'com.h2database:h2:1.4.182'
+    compile 'org.flywaydb:flyway-core:3.0'
+    compile 'org.webjars:bootstrap:3.2.0'
+    //runtime 'com.oracle:ojdbc6:11.2.0.4.0'
     
     testCompile 'org.springframework.boot:spring-boot-devtools'
     testCompile 'org.springframework.boot:spring-boot-starter-test'

@@ -16,8 +16,8 @@ import lombok.Setter;
 @Setter
 public class SampleBean {
 
-	/** PK. */
-	private String primaryKey;
+	/** ID. */
+	private Integer id;
 
 	/** name. */
 	private String name;
