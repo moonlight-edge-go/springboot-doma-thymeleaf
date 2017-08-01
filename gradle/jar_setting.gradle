@@ -1,0 +1,20 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath group: 'org.ajoberstar', name: 'grgit', version: '1.7.0'
+	}
+}
+
+def git = org.ajoberstar.grgit.Grgit.open(file('.'))
+
+// jarプラグイン設定
+jar {
+	manifest {
+		attributes 'Build-OS': System.getProperty("os.name")
+		attributes 'Build-Jdk': System.getProperty("java.version")
+		attributes 'Build-Date': new Date().format('yyyy/MM/dd HH:mm:ss')
+		attributes 'Build-Revision': git.head().id
+	}
+}

@@ -1,0 +1,37 @@
+apply plugin: 'findbugs'
+apply plugin: 'jacoco'
+apply plugin: 'eclipse'
+
+task wrapper(type: Wrapper){
+  gradleVersion = '2.14.1'
+}
+
+compileJava {
+	options.compilerArgs << "-Xlint:all" << "-Xlint:-serial"
+}
+
+/* ------------------------------------------------
+	FindBugs
+------------------------------------------------ */
+[findbugsMain, findbugsTest]*.ignoreFailures = true
+tasks.withType(FindBugs) {
+	reports {
+		xml.enabled = true
+		html.enabled = false
+	}
+}
+
+/* ------------------------------------------------
+	eclipse
+------------------------------------------------ */
+eclipse {
+	project {
+        natures 'com.atlassw.tools.eclipse.checkstyle.CheckstyleNature'
+        natures 'net.sf.eclipsecs.core.CheckstyleNature'
+        buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
+	}
+}
+
+jacoco {
+	toolVersion = "0.7.5.+"
+}
